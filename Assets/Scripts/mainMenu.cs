@@ -12,10 +12,6 @@ public class mainMenu : MonoBehaviour {
     public GameObject loadGameList;
     public GameObject optionsList;
 
-/*
-Создаю метод "menuNewGame, в котором производится проверка: является ли newGameList активным (то есть список полей для сохранения игры).
-Если является, то он закрывается, а если нет, то он открывается, а остальные закрываются. Аналогично и с остальными методами.
-*/
 
     public void menuLoadGame() {
 

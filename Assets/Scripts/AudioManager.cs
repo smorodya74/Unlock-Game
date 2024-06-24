@@ -11,7 +11,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource sfxSource;
 
     private float musicVolume = 0.3f;
-    private float sfxVolume = 1f;
+    private float sfxVolume = 0.3f;
 
     private void Awake()
     {
@@ -75,7 +75,7 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            sfxVolume = 1f; // Начальное значение громкости звуков по умолчанию
+            sfxVolume = 0.3f; // Начальное значение громкости звуков по умолчанию
         }
 
         if (mainMenuMusic != null) mainMenuMusic.volume = musicVolume;
@@ -83,7 +83,6 @@ public class AudioManager : MonoBehaviour
         if (sfxSource != null) sfxSource.volume = sfxVolume;
     }
 
-    // Метод для воспроизведения звукового эффекта
     public void PlaySFX(AudioClip clip)
     {
         sfxSource.PlayOneShot(clip, sfxVolume);
