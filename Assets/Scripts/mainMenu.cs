@@ -9,11 +9,15 @@ using System.Text;
 using UnityEngine.SceneManagement;
 
 public class mainMenu : MonoBehaviour {
+
     public GameObject loadGameList;
     public GameObject optionsList;
+    public GameObject soundSettigs;
+    public GameObject videoSettings;
 
 
-    public void menuLoadGame() {
+    public void menuLoadGame() 
+    {
 
         if(loadGameList.activeInHierarchy == true) loadGameList.SetActive(false);
         else{
@@ -22,16 +26,44 @@ public class mainMenu : MonoBehaviour {
         }
     }
 
-    public void menuOptions() {
-
-        if(optionsList.activeInHierarchy == true) optionsList.SetActive(false);
-        else{
+    public void menuOptions()
+    {
+        if (optionsList.activeInHierarchy == true)
+        {
+            soundSettigs.SetActive(false);
+            videoSettings.SetActive(false);
+            optionsList.SetActive(false);
+        }
+        else
+        {
             optionsList.SetActive(true);
+            soundSettigs.SetActive(true);
             loadGameList.SetActive(false);
         }
     }
 
-    public void exitGame() {
+    public void menuSound()
+    {
+        if (soundSettigs.activeInHierarchy == true) { }
+        else
+        {
+            videoSettings.SetActive(false);
+            soundSettigs.SetActive(true);
+        }
+    }
+
+    public void menuVideo()
+    {
+        if (videoSettings.activeInHierarchy == true) { }
+        else
+        {
+            soundSettigs.SetActive(false);
+            videoSettings.SetActive(true);
+        }
+    }
+
+    public void exitGame() 
+    {
         Application.Quit();
     }
 }
