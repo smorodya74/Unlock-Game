@@ -43,14 +43,10 @@ public class AudioManager : MonoBehaviour
     }
 
     public float GetMusicVolume()
-    {
-        return musicVolume;
-    }
+       => musicVolume;
 
     public float GetSFXVolume()
-    {
-        return sfxVolume;
-    }
+        => sfxVolume;
 
     private void SaveVolumes()
     {
