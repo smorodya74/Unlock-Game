@@ -18,7 +18,14 @@ public class ButtonSound : MonoBehaviour
 
     public void PlaySound()
     {
-        AudioManager.instance.PlaySFX(buttonClickSound);
+        if (buttonClickSound != null)
+        {
+            AudioManager.instance.PlaySFX(buttonClickSound);
+        }
+        else
+        {
+            Debug.LogError("Button click sound is not set!");
+        }
     }
 }
 
