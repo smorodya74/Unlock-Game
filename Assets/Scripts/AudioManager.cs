@@ -30,8 +30,7 @@ public class AudioManager : MonoBehaviour
     public void SetMusicVolume(float volume)
     {
         musicVolume = volume;
-        if (mainMenuMusic != null) mainMenuMusic.volume = musicVolume;
-        if (levelMusic != null) levelMusic.volume = musicVolume;
+        UpdateMusicVolume();
         SaveVolumes();
     }
 
@@ -43,7 +42,7 @@ public class AudioManager : MonoBehaviour
     }
 
     public float GetMusicVolume()
-       => musicVolume;
+        => musicVolume;
 
     public float GetSFXVolume()
         => sfxVolume;
@@ -56,31 +55,20 @@ public class AudioManager : MonoBehaviour
 
     private void LoadVolumes()
     {
-        if (PlayerPrefs.HasKey("MusicVolume"))
-        {
-            musicVolume = PlayerPrefs.GetFloat("MusicVolume");
-        }
-        else
-        {
-            musicVolume = 0.3f; // Начальное значение громкости музыки по умолчанию
-        }
+        musicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.3f);
+        sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 0.3f);
+        UpdateMusicVolume();
+        if (sfxSource != null) sfxSource.volume = sfxVolume;
+    }
 
-        if (PlayerPrefs.HasKey("SFXVolume"))
-        {
-            sfxVolume = PlayerPrefs.GetFloat("SFXVolume");
-        }
-        else
-        {
-            sfxVolume = 0.3f; // Начальное значение громкости звуков по умолчанию
-        }
-
+    private void UpdateMusicVolume()
+    {
         if (mainMenuMusic != null) mainMenuMusic.volume = musicVolume;
         if (levelMusic != null) levelMusic.volume = musicVolume;
-        if (sfxSource != null) sfxSource.volume = sfxVolume;
     }
 
     public void PlaySFX(AudioClip clip)
     {
-        sfxSource.PlayOneShot(clip, sfxVolume);
+        sfxSource?.PlayOneShot(clip, sfxVolume);
     }
 }

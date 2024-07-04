@@ -20,7 +20,7 @@ public class ButtonSound : MonoBehaviour
     {
         if (buttonClickSound != null)
         {
-            AudioManager.instance.PlaySFX(buttonClickSound);
+            AudioManager.instance?.PlaySFX(buttonClickSound);
         }
         else
         {
@@ -28,4 +28,3 @@ public class ButtonSound : MonoBehaviour
         }
     }
 }
-

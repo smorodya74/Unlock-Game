@@ -8,63 +8,62 @@ using System.Linq;
 using System.Text;
 using UnityEngine.SceneManagement;
 
-public class mainMenu : MonoBehaviour {
-
+public class MainMenu : MonoBehaviour
+{
     public GameObject loadGameList;
     public GameObject optionsList;
-    public GameObject soundSettigs;
+    public GameObject soundSettings;
     public GameObject videoSettings;
 
-
-    public void menuLoadGame() 
+    public void MenuLoadGame()
     {
-
-        if(loadGameList.activeInHierarchy == true) loadGameList.SetActive(false);
-        else{
-            loadGameList.SetActive(true);
-            optionsList.SetActive(false);
-        }
+        ToggleGameObject(loadGameList);
+        if (loadGameList.activeInHierarchy) optionsList.SetActive(false);
     }
 
-    public void menuOptions()
+    public void MenuOptions()
     {
-        if (optionsList.activeInHierarchy == true)
+        ToggleGameObject(optionsList);
+        if (optionsList.activeInHierarchy)
         {
-            soundSettigs.SetActive(false);
+            soundSettings.SetActive(true);
             videoSettings.SetActive(false);
-            optionsList.SetActive(false);
-        }
-        else
-        {
-            optionsList.SetActive(true);
-            soundSettigs.SetActive(true);
             loadGameList.SetActive(false);
         }
-    }
-
-    public void menuSound()
-    {
-        if (soundSettigs.activeInHierarchy == true) { }
         else
         {
+            soundSettings.SetActive(false);
             videoSettings.SetActive(false);
-            soundSettigs.SetActive(true);
         }
     }
 
-    public void menuVideo()
+    public void MenuSound()
+    {
+        if (soundSettings.activeInHierarchy == true) { }
+        else
+        {
+            videoSettings.SetActive(false);
+            soundSettings.SetActive(true);
+        }
+    }
+
+    public void MenuVideo()
     {
         if (videoSettings.activeInHierarchy == true) { }
         else
         {
-            soundSettigs.SetActive(false);
+            soundSettings.SetActive(false);
             videoSettings.SetActive(true);
         }
     }
 
-    public void exitGame() 
+    public void ExitGame()
     {
         Application.Quit();
     }
-}
 
+    private void ToggleGameObject(GameObject obj)
+    {
+        obj.SetActive(!obj.activeInHierarchy);
+    }
+}

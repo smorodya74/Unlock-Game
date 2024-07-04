@@ -9,14 +9,10 @@ public class SceneController : MonoBehaviour
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
 
-        // Инициализация громкости при загрузке первой сцены
-        if (SceneManager.GetActiveScene().name == "MainMenu")
+        if (SceneManager.GetActiveScene().name == "MainMenu" && AudioManager.instance?.mainMenuMusic != null)
         {
-            if (AudioManager.instance.mainMenuMusic != null)
-            {
-                AudioManager.instance.mainMenuMusic.volume = AudioManager.instance.GetMusicVolume();
-                AudioManager.instance.mainMenuMusic.Play();
-            }
+            AudioManager.instance.mainMenuMusic.volume = AudioManager.instance.GetMusicVolume();
+            AudioManager.instance.mainMenuMusic.Play();
         }
     }
 
